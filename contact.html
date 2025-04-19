@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوقنا - اتصل بنا</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>سوقنا</span>
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="add-product.html">بيع منتج</a></li>
+                    <li><a href="contact.html" class="active">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="login-btn">تسجيل الدخول</a>
+                <a href="dashboard.html" class="user-profile hidden">
+                    <img src="images/user-avatar.jpg" alt="صورة المستخدم">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="container">
+                <input type="text" placeholder="ابحث عن منتج أو فئة...">
+                <button class="close-search"><i class="fas fa-times"></i></button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="contact-page">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-right">
+                    <h1 class="page-title">اتصل بنا</h1>
+                    <p class="page-description">لديك استفسار أو اقتراح؟ نحن هنا لمساعدتك! تواصل معنا عبر أي من الطرق التالية وسنرد عليك في أسرع وقت ممكن.</p>
+                    
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>عنواننا</h3>
+                                <p>الكويت، مدينة الكويت<br>شارع الخليج العربي، مبنى سوقنا</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>هاتفنا</h3>
+                                <p>+965 12345678<br>من الأحد إلى الخميس، 8 صباحًا - 5 مساءً</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h3>بريدنا الإلكتروني</h3>
+                                <p>info@souqna.com<br>support@souqna.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-media">
+                        <h3>وسائل التواصل الاجتماعي</h3>
+                        <div class="social-links">
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form" data-aos="fade-left">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">اسمك *</label>
+                            <input type="text" id="name" name="name" placeholder="ادخل اسمك">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">بريدك الإلكتروني *</label>
+                            <input type="email" id="email" name="email" placeholder="ادخل بريدك الإلكتروني">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف (اختياري)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="ادخل رقم هاتفك">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">الموضوع *</label>
+                            <select id="subject" name="subject">
+                                <option value="">اختر موضوع الرسالة</option>
+                                <option value="support">دعم فني</option>
+                                <option value="complaint">شكوى</option>
+                                <option value="suggestion">اقتراح</option>
+                                <option value="partnership">شراكة</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">رسالتك *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="contact-map" data-aos="fade-up">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3477.3456789012345!2d47.987654321!3d29.34567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDIwJzQ0LjQiTiA0N8KwNTknMTUuNiJF!5e0!3m2!1sen!2skw!4v1234567890123!5m2!1sen!2skw" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </main>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>سوقنا</h3>
+                    <p>منصة رائدة في بيع وشراء المنتجات الجديدة والمستعملة في الكويت. نوفر لك تجربة تسوق آمنة وسهلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="add-product.html">بيع منتج</a></li>
+                        <li><a href="dashboard.html">حسابي</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">مساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الكويت، مدينة الكويت</li>
+                        <li><i class="fas fa-phone"></i> +965 12345678</li>
+                        <li><i class="fas fa-envelope"></i> info@souqna.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 سوقنا. جميع الحقوق محفوظة.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form-validation.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // تفعيل VanillaTilt لبطاقات المعلومات
+        VanillaTilt.init(document.querySelectorAll(".info-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.1,
+        });
+    </script>
+</body>
+</html>

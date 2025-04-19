@@ -1,0 +1,112 @@
+/* products-page styles */
+.products-page {
+    padding: 30px 0;
+  }
+  
+  .view-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .view-option {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .view-option.active {
+    background: var(--primary-color);
+  }
+  
+  .products-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .filter-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .filter-reset {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  /* Grid and List view styles */
+  .products-container.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .products-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .products-container.list-view .product-card {
+    display: flex;
+    max-height: 150px;
+  }
+  
+  .products-container.list-view .product-image {
+    width: 200px;
+    height: 150px;
+    flex-shrink: 0;
+  }
+  
+  .products-container.list-view .product-details {
+    flex: 1;
+  }
+  
+  .load-more-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .load-more {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+  }
+  
+  .load-more:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }

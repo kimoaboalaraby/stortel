@@ -1,0 +1,447 @@
+/* add-product-page styles */
+.add-product-page {
+    padding: 30px 0;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .add-product-form {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .form-section {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .hint {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+  }
+  
+  .upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .upload-area:hover {
+    border-color: var(--primary-color);
+  }
+  
+  .upload-area i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
+  
+  .upload-area p {
+    margin-bottom: 10px;
+  }
+  
+  .upload-area span {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  #product-images {
+    display: none;
+  }
+  
+  .images-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .image-preview-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-image {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.8rem;
+    display: none;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .radio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .radiomark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .radio-container input:checked ~ .radiomark {
+    border-color: var(--primary-color);
+  }
+  
+  .radiomark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: none;
+  }
+  
+  .radio-container input:checked ~ .radiomark::after {
+    display: block;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .submit-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .preview-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .preview-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+  
+  .preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    padding: 20px;
+  }
+  
+  .preview-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: var(--dark-color);
+    border-radius: 15px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 2;
+  }
+  
+  .close-modal:hover {
+    background: var(--primary-color);
+    transform: rotate(90deg);
+  }
+  
+  .modal-body {
+    padding: 40px;
+  }
+  
+  .preview-content {
+    margin-top: 20px;
+  }
+  
+  .preview-product-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .preview-product-images .main-image {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .preview-product-images .main-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .preview-product-images .no-image {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .preview-price-condition {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+  }
+  
+  .preview-price-condition .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  
+  .preview-price-condition .condition {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .preview-meta {
+    display: flex;
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+  }
+  
+  .preview-description {
+    margin: 20px 0;
+  }
+  
+  .preview-description p {
+    line-height: 1.7;
+  }
+  
+  .preview-seller {
+    margin-top: 30px;
+  }
+  
+  .seller-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .preview-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .edit-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .edit-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+  
+  .publish-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .publish-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .dragover {
+    border-color: var(--primary-color) !important;
+    background: rgba(255, 107, 107, 0.1);
+  }

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوقنا - تسجيل الدخول</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+
+
+/* auth-page styles */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+  }
+  
+  .auth-container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .auth-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .auth-header p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .auth-form .form-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .toggle-password {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+  }
+  
+  .toggle-password .fa-eye-slash {
+    display: none;
+  }
+  
+  .toggle-password.active .fa-eye {
+    display: none;
+  }
+  
+  .toggle-password.active .fa-eye-slash {
+    display: block;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .remember-me input {
+    display: none;
+  }
+  
+  .remember-me .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+  }
+  
+  .remember-me input:checked ~ .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .remember-me .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.7rem;
+    display: none;
+  }
+  
+  .remember-me input:checked ~ .checkmark::after {
+    display: block;
+  }
+  
+  .forgot-password {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 20px;
+  }
+  
+  .submit-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .social-login {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .social-login p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .social-login p::before,
+  .social-login p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .social-login p::before {
+    right: 0;
+  }
+  
+  .social-login p::after {
+    left: 0;
+  }
+  
+  .social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .google-btn,
+  .facebook-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .google-btn {
+    background: rgba(219, 68, 55, 0.1);
+    color: #DB4437;
+    border: 1px solid #DB4437;
+  }
+  
+  .google-btn:hover {
+    background: rgba(219, 68, 55, 0.2);
+  }
+  
+  .facebook-btn {
+    background: rgba(59, 89, 152, 0.1);
+    color: #3B5998;
+    border: 1px solid #3B5998;
+  }
+  
+  .facebook-btn:hover {
+    background: rgba(59, 89, 152, 0.2);
+  }
+  
+  .auth-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .auth-footer a {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  .auth-image {
+    flex: 1;
+    position: relative;
+    display: none;
+  }
+  
+  .auth-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  .auth-quote {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    left: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .auth-quote h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  @media (min-width: 992px) {
+    .auth-page .container {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .auth-image {
+      display: block;
+    }
+  }
+  
+  /* تأثيرات حقول الإدخال */
+  .form-group.focused label {
+    color: var(--primary-color);
+  }
+  
+  .form-group.focused .input-icon {
+    color: var(--primary-color);
+  }
+  
+  .form-group.focused input {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+  }
+  
+
+
+</style>
+
+<body>
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>سوقنا</span>
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="add-product.html">بيع منتج</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="login-btn">تسجيل الدخول</a>
+                <a href="dashboard.html" class="user-profile hidden">
+                    <img src="images/user-avatar.jpg" alt="صورة المستخدم">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="container">
+                <input type="text" placeholder="ابحث عن منتج أو فئة...">
+                <button class="close-search"><i class="fas fa-times"></i></button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="auth-page">
+        <div class="container">
+            <div class="auth-container" data-aos="fade-up">
+                <div class="auth-header">
+                    <h1>تسجيل الدخول</h1>
+                    <p>مرحبًا بعودتك! سجل الدخول للوصول إلى حسابك</p>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" placeholder="ادخل بريدك الإلكتروني">
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <input type="password" id="password" name="password" placeholder="ادخل كلمة المرور">
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="toggle-password">
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-eye-slash"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            تذكرني
+                        </label>
+                        <a href="forgot-password.html" class="forgot-password">نسيت كلمة المرور؟</a>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">تسجيل الدخول</button>
+                    
+                    <div class="social-login">
+                        <p>أو سجل الدخول باستخدام</p>
+                        <div class="social-buttons">
+                            <a href="#" class="google-btn">
+                                <i class="fab fa-google"></i>
+                                جوجل
+                            </a>
+                            <a href="#" class="facebook-btn">
+                                <i class="fab fa-facebook-f"></i>
+                                فيسبوك
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="auth-footer">
+                        <p>ليس لديك حساب؟ <a href="register.html">أنشئ حسابًا جديدًا</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="auth-image" data-aos="fade-left">
+                <img src="images/login-image.jpg" alt="تسجيل الدخول">
+                <div class="auth-quote">
+                    <h3>انضم إلى مجتمعنا</h3>
+                    <p>أكثر من مليون عضو يستخدمون منصتنا لبيع وشراء المنتجات يوميًا</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>سوقنا</h3>
+                    <p>منصة رائدة في بيع وشراء المنتجات الجديدة والمستعملة في الكويت. نوفر لك تجربة تسوق آمنة وسهلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="add-product.html">بيع منتج</a></li>
+                        <li><a href="dashboard.html">حسابي</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">مساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الكويت، مدينة الكويت</li>
+                        <li><i class="fas fa-phone"></i> +965 12345678</li>
+                        <li><i class="fas fa-envelope"></i> info@souqna.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 سوقنا. جميع الحقوق محفوظة.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form-validation.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // تبديل عرض كلمة المرور
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            this.querySelector('.fa-eye').classList.toggle('active');
+            this.querySelector('.fa-eye-slash').classList.toggle('active');
+        });
+        
+        // تأثيرات إضافية لحقول الإدخال
+        const formInputs = document.querySelectorAll('.auth-form input');
+        
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // إذا كان الحقل يحتوي على قيمة عند التحميل
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+    </script>
+</body>
+</html>

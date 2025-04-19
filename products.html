@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوقنا - تصفح المنتجات</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+<style>
+
+
+/* products-page styles */
+.products-page {
+    padding: 30px 0;
+  }
+  
+  .view-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .view-option {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .view-option.active {
+    background: var(--primary-color);
+  }
+  
+  .products-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .filter-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .filter-reset {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  /* Grid and List view styles */
+  .products-container.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+  
+  .products-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .products-container.list-view .product-card {
+    display: flex;
+    max-height: 150px;
+  }
+  
+  .products-container.list-view .product-image {
+    width: 200px;
+    height: 150px;
+    flex-shrink: 0;
+  }
+  
+  .products-container.list-view .product-details {
+    flex: 1;
+  }
+  
+  .load-more-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .load-more {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+  }
+  
+  .load-more:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+
+
+</style>
+
+<body>
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>سوقنا</span>
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="products.html" class="active">المنتجات</a></li>
+                    <li><a href="add-product.html">بيع منتج</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="login-btn">تسجيل الدخول</a>
+                <a href="dashboard.html" class="user-profile hidden">
+                    <img src="images/user-avatar.jpg" alt="صورة المستخدم">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="container">
+                <input type="text" placeholder="ابحث عن منتج أو فئة...">
+                <button class="close-search"><i class="fas fa-times"></i></button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="products-page">
+        <section class="products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title" data-aos="fade-up">تصفح المنتجات</h1>
+                    <div class="view-options" data-aos="fade-up" data-aos-delay="100">
+                        <button class="view-option active" data-view="grid"><i class="fas fa-th-large"></i></button>
+                        <button class="view-option" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+                
+                <div class="products-filters" data-aos="fade-up" data-aos-delay="150">
+                    <div class="filter-group">
+                        <label for="category">الفئة:</label>
+                        <select id="category" class="filter-select">
+                            <option value="">الكل</option>
+                            <option value="electronics">إلكترونيات</option>
+                            <option value="fashion">أزياء</option>
+                            <option value="home">المنزل</option>
+                            <option value="vehicles">مركبات</option>
+                            <option value="sports">رياضة</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="price">السعر:</label>
+                        <select id="price" class="filter-select">
+                            <option value="">الكل</option>
+                            <option value="0-50">حتى 50 د.ك</option>
+                            <option value="50-100">50 - 100 د.ك</option>
+                            <option value="100-200">100 - 200 د.ك</option>
+                            <option value="200-500">200 - 500 د.ك</option>
+                            <option value="500+">أكثر من 500 د.ك</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="location">الموقع:</label>
+                        <select id="location" class="filter-select">
+                            <option value="">الكل</option>
+                            <option value="kuwait">الكويت</option>
+                            <option value="hawally">حولي</option>
+                            <option value="fahaheel">الفحيحيل</option>
+                            <option value="salmiya">السالمية</option>
+                            <option value="farwaniya">الفروانية</option>
+                            <option value="jahra">الجهراء</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort">ترتيب حسب:</label>
+                        <select id="sort" class="filter-select">
+                            <option value="newest">الأحدث</option>
+                            <option value="price-low">السعر (منخفض إلى مرتفع)</option>
+                            <option value="price-high">السعر (مرتفع إلى منخفض)</option>
+                            <option value="popular">الأكثر شعبية</option>
+                        </select>
+                    </div>
+                    
+                    <button class="filter-reset">إعادة تعيين</button>
+                </div>
+                
+                <div class="products-container grid-view" id="productsContainer">
+                    <!-- المنتجات سيتم إضافتها بواسطة JavaScript -->
+                </div>
+                
+                <div class="load-more-container">
+                    <button class="load-more">تحميل المزيد</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>سوقنا</h3>
+                    <p>منصة رائدة في بيع وشراء المنتجات الجديدة والمستعملة في الكويت. نوفر لك تجربة تسوق آمنة وسهلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="add-product.html">بيع منتج</a></li>
+                        <li><a href="dashboard.html">حسابي</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">مساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الكويت، مدينة الكويت</li>
+                        <li><i class="fas fa-phone"></i> +965 12345678</li>
+                        <li><i class="fas fa-envelope"></i> info@souqna.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 سوقنا. جميع الحقوق محفوظة.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // بيانات وهمية للمنتجات (في الواقع ستكون من قاعدة بيانات)
+        const productsData = [
+            {
+                id: 1,
+                name: 'آيفون 13 برو',
+                price: '1,200 د.ك',
+                category: 'electronics',
+                image: 'images/product1.jpg',
+                location: 'kuwait',
+                date: 'منذ يومين',
+                rating: 4.5,
+                badge: 'مميز'
+            },
+            {
+                id: 2,
+                name: 'ساعة أبل الذكية',
+                price: '250 د.ك',
+                category: 'electronics',
+                image: 'images/product2.jpg',
+                location: 'hawally',
+                date: 'منذ أسبوع',
+                rating: 4.0,
+                badge: ''
+            },
+            {
+                id: 3,
+                name: 'حذاء رياضي نايك',
+                price: '45 د.ك',
+                category: 'fashion',
+                image: 'images/product3.jpg',
+                location: 'farwaniya',
+                date: 'منذ 3 أيام',
+                rating: 4.8,
+                badge: 'جديد'
+            },
+            {
+                id: 4,
+                name: 'كاميرا كانون EOS',
+                price: '350 د.ك',
+                category: 'electronics',
+                image: 'images/product4.jpg',
+                location: 'salmiya',
+                date: 'منذ شهر',
+                rating: 4.3,
+                badge: ''
+            },
+            {
+                id: 5,
+                name: 'ساعة يد فاخرة',
+                price: '180 د.ك',
+                category: 'fashion',
+                image: 'images/product5.jpg',
+                location: 'jahra',
+                date: 'منذ ساعة',
+                rating: 4.0,
+                badge: ''
+            },
+            {
+                id: 6,
+                name: 'حقيبة ظهر جلدية',
+                price: '75 د.ك',
+                category: 'fashion',
+                image: 'images/product6.jpg',
+                location: 'fahaheel',
+                date: 'منذ 5 ساعات',
+                rating: 4.7,
+                badge: 'خصم'
+            },
+            {
+                id: 7,
+                name: 'دراجة هوائية جبلية',
+                price: '150 د.ك',
+                category: 'vehicles',
+                image: 'images/product7.jpg',
+                location: 'kuwait',
+                date: 'منذ يوم',
+                rating: 4.4,
+                badge: ''
+            },
+            {
+                id: 8,
+                name: 'سماعات لاسلكية',
+                price: '65 د.ك',
+                category: 'electronics',
+                image: 'images/product8.jpg',
+                location: 'hawally',
+                date: 'منذ 3 أيام',
+                rating: 4.0,
+                badge: ''
+            },
+            {
+                id: 9,
+                name: 'جهاز ماك بوك برو',
+                price: '800 د.ك',
+                category: 'electronics',
+                image: 'images/product9.jpg',
+                location: 'salmiya',
+                date: 'منذ 4 أيام',
+                rating: 4.7,
+                badge: 'جديد'
+            },
+            {
+                id: 10,
+                name: 'كاميرا كانون',
+                price: '300 د.ك',
+                category: 'electronics',
+                image: 'images/product10.jpg',
+                location: 'hawally',
+                date: 'منذ أسبوع',
+                rating: 4.2,
+                badge: ''
+            },
+            {
+                id: 11,
+                name: 'حذاء رياضي اديداس',
+                price: '50 د.ك',
+                category: 'fashion',
+                image: 'images/product11.jpg',
+                location: 'farwaniya',
+                date: 'منذ 3 أيام',
+                rating: 4.0,
+                badge: ''
+            },
+            {
+                id: 12,
+                name: 'نظارة شمسية راي بان',
+                price: '35 د.ك',
+                category: 'fashion',
+                image: 'images/product12.jpg',
+                location: 'jahra',
+                date: 'منذ يوم',
+                rating: 4.5,
+                badge: 'خصم'
+            }
+        ];
+
+        // عرض المنتجات
+        function displayProducts(products) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-aos', 'fade-up');
+                
+                if (product.badge) {
+                    productCard.innerHTML = `
+                        <div class="product-badge">${product.badge}</div>
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <div class="product-actions">
+                                <button class="quick-view"><i class="fas fa-eye"></i></button>
+                                <button class="add-favorite"><i class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">${product.price}</div>
+                            <div class="product-meta">
+                                <span class="product-location"><i class="fas fa-map-marker-alt"></i> ${getLocationName(product.location)}</span>
+                                <span class="product-date"><i class="far fa-clock"></i> ${product.date}</span>
+                            </div>
+                            <div class="product-rating">
+                                ${renderRatingStars(product.rating)}
+                                <span>(${Math.floor(Math.random() * 20) + 5})</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    productCard.innerHTML = `
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            <div class="product-actions">
+                                <button class="quick-view"><i class="fas fa-eye"></i></button>
+                                <button class="add-favorite"><i class="far fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">${product.price}</div>
+                            <div class="product-meta">
+                                <span class="product-location"><i class="fas fa-map-marker-alt"></i> ${getLocationName(product.location)}</span>
+                                <span class="product-date"><i class="far fa-clock"></i> ${product.date}</span>
+                            </div>
+                            <div class="product-rating">
+                                ${renderRatingStars(product.rating)}
+                                <span>(${Math.floor(Math.random() * 20) + 5})</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                container.appendChild(productCard);
+            });
+
+            // إعادة تهيئة العرض السريع للمنتجات
+            initQuickView();
+            
+            // إعادة تهيئة VanillaTilt للمنتجات
+            VanillaTilt.init(document.querySelectorAll(".product-card"), {
+                max: 5,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.1,
+            });
+        }
+
+        // دالة مساعدة لعرض النجوم
+        function renderRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 1; i <= 5; i++) {
+                if (i <= fullStars) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === fullStars + 1 && hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            return stars;
+        }
+
+        // دالة مساعدة للحصول على اسم الموقع
+        function getLocationName(locationCode) {
+            const locations = {
+                'kuwait': 'الكويت',
+                'hawally': 'حولي',
+                'fahaheel': 'الفحيحيل',
+                'salmiya': 'السالمية',
+                'farwaniya': 'الفروانية',
+                'jahra': 'الجهراء'
+            };
+            return locations[locationCode] || 'الكويت';
+        }
+
+        // فلترة المنتجات
+        function filterProducts() {
+            const category = document.getElementById('category').value;
+            const price = document.getElementById('price').value;
+            const location = document.getElementById('location').value;
+            const sort = document.getElementById('sort').value;
+
+            let filteredProducts = [...productsData];
+
+            // فلترة حسب الفئة
+            if (category) {
+                filteredProducts = filteredProducts.filter(product => product.category === category);
+            }
+
+            // فلترة حسب السعر
+            if (price) {
+                const [min, max] = price.split('-').map(Number);
+                filteredProducts = filteredProducts.filter(product => {
+                    const productPrice = Number(product.price.replace(/[^0-9]/g, ''));
+                    if (price.endsWith('+')) {
+                        return productPrice >= 500;
+                    } else if (max) {
+                        return productPrice >= min && productPrice <= max;
+                    } else {
+                        return productPrice <= min;
+                    }
+                });
+            }
+
+            // فلترة حسب الموقع
+            if (location) {
+                filteredProducts = filteredProducts.filter(product => product.location === location);
+            }
+
+            // ترتيب المنتجات
+            switch (sort) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => Number(a.price.replace(/[^0-9]/g, '')) - Number(b.price.replace(/[^0-9]/g, '')));
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => Number(b.price.replace(/[^0-9]/g, '')) - Number(a.price.replace(/[^0-9]/g, '')));
+                    break;
+                case 'popular':
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                default: // الأحدث
+                    filteredProducts.sort((a, b) => {
+                        const dates = { 'ساعة': 1, 'يوم': 24, 'أسبوع': 168, 'شهر': 720 };
+                        const aHours = dates[a.date.split(' ')[1]] || 0;
+                        const bHours = dates[b.date.split(' ')[1]] || 0;
+                        return aHours - bHours;
+                    });
+            }
+
+            displayProducts(filteredProducts);
+        }
+
+        // أحداث الفلاتر
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', filterProducts);
+        });
+
+        document.querySelector('.filter-reset').addEventListener('click', () => {
+            document.querySelectorAll('.filter-select').forEach(select => {
+                select.value = '';
+            });
+            document.getElementById('sort').value = 'newest';
+            filterProducts();
+        });
+
+        // تبديل طريقة العرض (شبكة/قائمة)
+        document.querySelectorAll('.view-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.view-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const container = document.getElementById('productsContainer');
+                container.classList.remove('grid-view', 'list-view');
+                container.classList.add(this.dataset.view + '-view');
+            });
+        });
+
+        // تحميل المنتجات عند بدء الصفحة
+        displayProducts(productsData);
+    </script>
+</body>
+</html>

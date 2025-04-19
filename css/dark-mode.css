@@ -1,0 +1,33 @@
+/* سيتم تحميله تلقائياً عند تفعيل الوضع المظلم */
+body.dark-mode {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+}
+
+.dark-mode .header {
+    background-color: rgba(31, 31, 31, 0.9);
+}
+
+.dark-mode .search-bar {
+    background-color: #1F1F1F;
+}
+
+.dark-mode .search-bar input {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+}
+
+.dark-mode .category-card,
+.dark-mode .product-card,
+.dark-mode .feature-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .quick-view-modal .modal-content {
+    background-color: #1F1F1F;
+}
+
+.dark-mode .quantity-input {
+    color: #FFFFFF;
+}

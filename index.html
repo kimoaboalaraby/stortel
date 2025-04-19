@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوقنا - السوق الإلكتروني الأول</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>سوقنا</span>
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="add-product.html">بيع منتج</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="login-btn">تسجيل الدخول</a>
+                <a href="dashboard.html" class="user-profile hidden">
+                    <img src="images/user-avatar.jpg" alt="صورة المستخدم">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="container">
+                <input type="text" placeholder="ابحث عن منتج أو فئة...">
+                <button class="close-search"><i class="fas fa-times"></i></button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- السلايدر الرئيسي -->
+    <section class="hero-slider">
+        <div class="hero-slide active" style="background: linear-gradient(135deg, rgba(31, 31, 31, 0.8), rgba(255, 107, 107, 0.6)), url('images/hero1.jpg');">
+            <div class="container">
+                <h1 data-aos="fade-up">اشترِ وبيع منتجاتك بكل سهولة</h1>
+                <p data-aos="fade-up" data-aos-delay="100">أكبر سوق إلكتروني لبيع وشراء المنتجات المستعملة والجديدة</p>
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="200">
+                    <a href="products.html" class="btn primary-btn">تصفح المنتجات</a>
+                    <a href="add-product.html" class="btn secondary-btn">بيع منتج الآن</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-slide" style="background: linear-gradient(135deg, rgba(31, 31, 31, 0.8), rgba(255, 217, 61, 0.6)), url('images/hero2.jpg');">
+            <div class="container">
+                <h1>أفضل العروض والصفقات</h1>
+                <p>احصل على أفضل الأسعار لأحدث المنتجات</p>
+                <div class="cta-buttons">
+                    <a href="products.html" class="btn primary-btn">تصفح العروض</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="slider-prev"><i class="fas fa-chevron-right"></i></button>
+            <button class="slider-next"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+    
+    <!-- قسم الفئات -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">تصفح حسب الفئة</h2>
+            
+            <div class="categories-grid">
+                <a href="products.html?category=electronics" class="category-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>إلكترونيات</h3>
+                    <p>أجهزة كمبيوتر، جوالات، ألعاب</p>
+                </a>
+                
+                <a href="products.html?category=fashion" class="category-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>أزياء</h3>
+                    <p>ملابس، أحذية، إكسسوارات</p>
+                </a>
+                
+                <a href="products.html?category=home" class="category-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>المنزل</h3>
+                    <p>أثاث، أدوات مطبخ، ديكور</p>
+                </a>
+                
+                <a href="products.html?category=vehicles" class="category-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>مركبات</h3>
+                    <p>سيارات، دراجات، قطع غيار</p>
+                </a>
+                
+                <a href="products.html?category=sports" class="category-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="category-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3>رياضة</h3>
+                    <p>معدات رياضية، ملابس</p>
+                </a>
+                
+                <a href="products.html?category=other" class="category-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <h3>أخرى</h3>
+                    <p>منتجات متنوعة</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- المنتجات المميزة -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">منتجات مميزة</h2>
+                <a href="products.html" class="view-all">عرض الكل <i class="fas fa-chevron-left"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- المنتج 1 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="product-badge">مميز</div>
+                    <div class="product-image">
+                        <img src="images/product1.jpg" alt="آيفون 13 برو">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">آيفون 13 برو</h3>
+                        <div class="product-price">1,200 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> الكويت</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ يومين</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(24)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 2 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <img src="images/product2.jpg" alt="ساعة أبل الذكية">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">ساعة أبل الذكية</h3>
+                        <div class="product-price">250 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> حولي</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ أسبوع</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(12)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 3 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image">
+                        <img src="images/product3.jpg" alt="حذاء رياضي">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">حذاء رياضي نايك</h3>
+                        <div class="product-price">45 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> الفروانية</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ 3 أيام</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(8)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 4 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/product4.jpg" alt="كاميرا كانون">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">كاميرا كانون EOS</h3>
+                        <div class="product-price">350 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> السالمية</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ شهر</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(17)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- أحدث المنتجات -->
+    <section class="latest-products">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">أحدث الإعلانات</h2>
+                <a href="products.html" class="view-all">عرض الكل <i class="fas fa-chevron-left"></i></a>
+            </div>
+            
+            <div class="products-grid">
+                <!-- المنتج 5 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="product-image">
+                        <img src="images/product5.jpg" alt="ساعة يد">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">ساعة يد فاخرة</h3>
+                        <div class="product-price">180 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> الجهراء</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ ساعة</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(5)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 6 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-badge">خصم</div>
+                    <div class="product-image">
+                        <img src="images/product6.jpg" alt="حقيبة ظهر">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">حقيبة ظهر جلدية</h3>
+                        <div class="product-price">75 د.ك <span class="old-price">120 د.ك</span></div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> الفحيحيل</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ 5 ساعات</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(9)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 7 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="product-image">
+                        <img src="images/product7.jpg" alt="دراجة هوائية">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">دراجة هوائية جبلية</h3>
+                        <div class="product-price">150 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> مبارك الكبير</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ يوم</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(14)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- المنتج 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/product8.jpg" alt="سماعات لاسلكية">
+                        <div class="product-actions">
+                            <button class="quick-view"><i class="fas fa-eye"></i></button>
+                            <button class="add-favorite"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">سماعات لاسلكية</h3>
+                        <div class="product-price">65 د.ك</div>
+                        <div class="product-meta">
+                            <span class="product-location"><i class="fas fa-map-marker-alt"></i> الشويخ</span>
+                            <span class="product-date"><i class="far fa-clock"></i> منذ 3 أيام</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(7)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم المميزات -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">لماذا تختار سوقنا؟</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>آمن وسهل</h3>
+                    <p>منصة آمنة وسهلة الاستخدام لبيع وشراء المنتجات</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>أفضل الأسعار</h3>
+                    <p>احصل على أفضل العروض والصفقات في السوق</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>بحث متقدم</h3>
+                    <p>ابحث بسهولة بين آلاف المنتجات باستخدام فلاتر متقدمة</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني</h3>
+                    <p>فريق دعم فني متاح لمساعدتك على مدار الساعة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم التطبيق -->
+    <section class="app-section">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text" data-aos="fade-right">
+                    <h2>حمل تطبيق سوقنا الآن</h2>
+                    <p>احصل على أفضل تجربة تسوق عبر تطبيقنا المخصص للهواتف الذكية. تصفح المنتجات، تواصل مع البائعين، وأجرِ الصفقات بكل سهولة.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="app-store-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>Download on the<br><strong>App Store</strong></span>
+                        </a>
+                        <a href="#" class="play-store-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>Get it on<br><strong>Google Play</strong></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image" data-aos="fade-left">
+                    <img src="images/app-mockup.png" alt="تطبيق سوقنا">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>سوقنا</h3>
+                    <p>منصة رائدة في بيع وشراء المنتجات الجديدة والمستعملة في الكويت. نوفر لك تجربة تسوق آمنة وسهلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="add-product.html">بيع منتج</a></li>
+                        <li><a href="dashboard.html">حسابي</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">مساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الكويت، مدينة الكويت</li>
+                        <li><i class="fas fa-phone"></i> +965 12345678</li>
+                        <li><i class="fas fa-envelope"></i> info@souqna.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 سوقنا. جميع الحقوق محفوظة.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    
+    <!-- نموذج عرض سريع -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <!-- سيتم ملؤه بالجافاسكريبت -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // تهيئة VanillaTilt لمنتجات معينة
+        VanillaTilt.init(document.querySelectorAll(".product-card"), {
+            max: 5,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.1,
+        });
+    </script>
+</body>
+</html>

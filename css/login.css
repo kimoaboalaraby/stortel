@@ -1,0 +1,284 @@
+/* auth-page styles */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+  }
+  
+  .auth-container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .auth-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .auth-header p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .auth-form .form-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .toggle-password {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+  }
+  
+  .toggle-password .fa-eye-slash {
+    display: none;
+  }
+  
+  .toggle-password.active .fa-eye {
+    display: none;
+  }
+  
+  .toggle-password.active .fa-eye-slash {
+    display: block;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .remember-me input {
+    display: none;
+  }
+  
+  .remember-me .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+  }
+  
+  .remember-me input:checked ~ .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .remember-me .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.7rem;
+    display: none;
+  }
+  
+  .remember-me input:checked ~ .checkmark::after {
+    display: block;
+  }
+  
+  .forgot-password {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 20px;
+  }
+  
+  .submit-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .social-login {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .social-login p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .social-login p::before,
+  .social-login p::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .social-login p::before {
+    right: 0;
+  }
+  
+  .social-login p::after {
+    left: 0;
+  }
+  
+  .social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .google-btn,
+  .facebook-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .google-btn {
+    background: rgba(219, 68, 55, 0.1);
+    color: #DB4437;
+    border: 1px solid #DB4437;
+  }
+  
+  .google-btn:hover {
+    background: rgba(219, 68, 55, 0.2);
+  }
+  
+  .facebook-btn {
+    background: rgba(59, 89, 152, 0.1);
+    color: #3B5998;
+    border: 1px solid #3B5998;
+  }
+  
+  .facebook-btn:hover {
+    background: rgba(59, 89, 152, 0.2);
+  }
+  
+  .auth-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .auth-footer a {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  .auth-image {
+    flex: 1;
+    position: relative;
+    display: none;
+  }
+  
+  .auth-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  .auth-quote {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    left: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .auth-quote h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  @media (min-width: 992px) {
+    .auth-page .container {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+    
+    .auth-image {
+      display: block;
+    }
+  }
+  
+  /* تأثيرات حقول الإدخال */
+  .form-group.focused label {
+    color: var(--primary-color);
+  }
+  
+  .form-group.focused .input-icon {
+    color: var(--primary-color);
+  }
+  
+  .form-group.focused input {
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+  }
+  

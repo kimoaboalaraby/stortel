@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوقنا - أضف منتج للبيع</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+
+
+
+<style>
+
+/* add-product-page styles */
+.add-product-page {
+    padding: 30px 0;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .add-product-form {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .form-section {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .hint {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+  }
+  
+  .upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .upload-area:hover {
+    border-color: var(--primary-color);
+  }
+  
+  .upload-area i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
+  
+  .upload-area p {
+    margin-bottom: 10px;
+  }
+  
+  .upload-area span {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  #product-images {
+    display: none;
+  }
+  
+  .images-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .image-preview-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-image {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .checkmark::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.8rem;
+    display: none;
+  }
+  
+  .checkbox-container input:checked ~ .checkmark::after {
+    display: block;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .radio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .radiomark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .radio-container input:checked ~ .radiomark {
+    border-color: var(--primary-color);
+  }
+  
+  .radiomark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: none;
+  }
+  
+  .radio-container input:checked ~ .radiomark::after {
+    display: block;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .submit-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .preview-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .preview-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+  
+  .preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    padding: 20px;
+  }
+  
+  .preview-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: var(--dark-color);
+    border-radius: 15px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 2;
+  }
+  
+  .close-modal:hover {
+    background: var(--primary-color);
+    transform: rotate(90deg);
+  }
+  
+  .modal-body {
+    padding: 40px;
+  }
+  
+  .preview-content {
+    margin-top: 20px;
+  }
+  
+  .preview-product-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .preview-product-images .main-image {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .preview-product-images .main-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .preview-product-images .no-image {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .preview-price-condition {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+  }
+  
+  .preview-price-condition .price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  
+  .preview-price-condition .condition {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .preview-meta {
+    display: flex;
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+  }
+  
+  .preview-description {
+    margin: 20px 0;
+  }
+  
+  .preview-description p {
+    line-height: 1.7;
+  }
+  
+  .preview-seller {
+    margin-top: 30px;
+  }
+  
+  .seller-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .preview-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .edit-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .edit-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+  
+  .publish-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    flex: 1;
+  }
+  
+  .publish-btn:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+  }
+  
+  .dragover {
+    border-color: var(--primary-color) !important;
+    background: rgba(255, 107, 107, 0.1);
+  }
+
+
+</style>
+
+
+
+<body>
+    <!-- شريط التنقل -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>سوقنا</span>
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="products.html">المنتجات</a></li>
+                    <li><a href="add-product.html" class="active">بيع منتج</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <a href="login.html" class="login-btn">تسجيل الدخول</a>
+                <a href="dashboard.html" class="user-profile hidden">
+                    <img src="images/user-avatar.jpg" alt="صورة المستخدم">
+                </a>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- شريط البحث -->
+        <div class="search-bar" id="searchBar">
+            <div class="container">
+                <input type="text" placeholder="ابحث عن منتج أو فئة...">
+                <button class="close-search"><i class="fas fa-times"></i></button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="add-product-page">
+        <div class="container">
+            <div class="breadcrumb" data-aos="fade-up">
+                <a href="index.html">الرئيسية</a>
+                <i class="fas fa-chevron-left"></i>
+                <span>بيع منتج</span>
+            </div>
+            
+            <h1 class="page-title" data-aos="fade-up">أضف منتج للبيع</h1>
+            
+            <div class="add-product-form" data-aos="fade-up">
+                <form id="addProductForm">
+                    <div class="form-section">
+                        <h2 class="section-title">معلومات المنتج الأساسية</h2>
+                        
+                        <div class="form-group">
+                            <label for="product-title">عنوان الإعلان *</label>
+                            <input type="text" id="product-title" name="title" placeholder="اكتب عنوانًا واضحًا وجذابًا">
+                            <div class="hint">مثال: آيفون 13 برو - 256 جيجابايت - بحالة ممتازة</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-category">الفئة *</label>
+                                <select id="product-category" name="category">
+                                    <option value="">اختر الفئة</option>
+                                    <option value="electronics">إلكترونيات</option>
+                                    <option value="fashion">أزياء</option>
+                                    <option value="home">المنزل</option>
+                                    <option value="vehicles">مركبات</option>
+                                    <option value="sports">رياضة</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-condition">الحالة *</label>
+                                <select id="product-condition" name="condition">
+                                    <option value="">اختر الحالة</option>
+                                    <option value="new">جديد</option>
+                                    <option value="used-excellent">مستعمل - ممتاز</option>
+                                    <option value="used-good">مستعمل - جيد</option>
+                                    <option value="used-fair">مستعمل - مقبول</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-price">السعر (دينار كويتي) *</label>
+                            <input type="number" id="product-price" name="price" placeholder="اكتب السعر">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 class="section-title">صور المنتج</h2>
+                        <div class="form-group">
+                            <label>صور المنتج *</label>
+                            <div class="upload-area" id="uploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>اسحب وأسقط الصور هنا أو <span>اختر ملفات</span></p>
+                                <input type="file" id="product-images" name="images" multiple accept="image/*">
+                            </div>
+                            <div class="images-preview" id="imagesPreview"></div>
+                            <div class="hint">يمكنك رفع حتى 10 صور (الأولى ستكون الصورة الرئيسية)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 class="section-title">تفاصيل المنتج</h2>
+                        
+                        <div class="form-group">
+                            <label for="product-description">وصف المنتج *</label>
+                            <textarea id="product-description" name="description" rows="6" placeholder="صف منتجك بالتفصيل"></textarea>
+                            <div class="hint">اكتب وصفًا واضحًا وشاملاً للمنتج، موضحًا جميع المميزات والعيوب إن وجدت</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-brand">العلامة التجارية (اختياري)</label>
+                                <input type="text" id="product-brand" name="brand" placeholder="مثل: أبل، سامسونج، نايك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-model">الموديل (اختياري)</label>
+                                <input type="text" id="product-model" name="model" placeholder="مثل: iPhone 13 Pro">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 class="section-title">معلومات البيع</h2>
+                        
+                        <div class="form-group">
+                            <label for="product-location">الموقع *</label>
+                            <select id="product-location" name="location">
+                                <option value="">اختر موقعك</option>
+                                <option value="kuwait">الكويت</option>
+                                <option value="hawally">حولي</option>
+                                <option value="fahaheel">الفحيحيل</option>
+                                <option value="salmiya">السالمية</option>
+                                <option value="farwaniya">الفروانية</option>
+                                <option value="jahra">الجهراء</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>طرق الدفع المتاحة</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="payment-cash" checked>
+                                    <span class="checkmark"></span>
+                                    نقدًا عند الاستلام
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="payment-card">
+                                    <span class="checkmark"></span>
+                                    بطاقة ائتمان
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="payment-bank">
+                                    <span class="checkmark"></span>
+                                    تحويل بنكي
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-warranty">الضمان (اختياري)</label>
+                            <select id="product-warranty" name="warranty">
+                                <option value="">بدون ضمان</option>
+                                <option value="1-week">أسبوع واحد</option>
+                                <option value="1-month">شهر واحد</option>
+                                <option value="3-months">3 أشهر</option>
+                                <option value="6-months">6 أشهر</option>
+                                <option value="1-year">سنة واحدة</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2 class="section-title">معلومات التواصل</h2>
+                        
+                        <div class="form-group">
+                            <label for="seller-name">اسم البائع *</label>
+                            <input type="text" id="seller-name" name="seller-name" placeholder="اسمك كما سيظهر للمشترين">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="seller-phone">رقم الهاتف *</label>
+                                <input type="tel" id="seller-phone" name="phone" placeholder="رقم الهاتف للتواصل">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="seller-email">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="seller-email" name="email" placeholder="لإرسال التنبيهات">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>طريقة التواصل المفضلة</label>
+                            <div class="radio-group">
+                                <label class="radio-container">
+                                    <input type="radio" name="contact-method" value="whatsapp" checked>
+                                    <span class="radiomark"></span>
+                                    واتساب
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="contact-method" value="phone">
+                                    <span class="radiomark"></span>
+                                    مكالمة هاتفية
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="contact-method" value="messages">
+                                    <span class="radiomark"></span>
+                                    رسائل نصية
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">نشر الإعلان</button>
+                        <button type="button" class="preview-btn">معاينة الإعلان</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>سوقنا</h3>
+                    <p>منصة رائدة في بيع وشراء المنتجات الجديدة والمستعملة في الكويت. نوفر لك تجربة تسوق آمنة وسهلة.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="products.html">المنتجات</a></li>
+                        <li><a href="add-product.html">بيع منتج</a></li>
+                        <li><a href="dashboard.html">حسابي</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>خدمة العملاء</h3>
+                    <ul>
+                        <li><a href="#">مساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>اتصل بنا</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> الكويت، مدينة الكويت</li>
+                        <li><i class="fas fa-phone"></i> +965 12345678</li>
+                        <li><i class="fas fa-envelope"></i> info@souqna.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 سوقنا. جميع الحقوق محفوظة.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amazon-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- الأزرار العائمة -->
+    <div class="floating-buttons">
+        <button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    
+    <!-- نموذج المعاينة -->
+    <div class="preview-modal" id="previewModal">
+        <div class="modal-content">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <h2>معاينة الإعلان</h2>
+                <div class="preview-content" id="previewContent">
+                    <!-- سيتم ملؤه بالجافاسكريبت -->
+                </div>
+                <div class="preview-actions">
+                    <button class="edit-btn">تعديل الإعلان</button>
+                    <button class="publish-btn">نشر الإعلان</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- مكتبات JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/form-validation.js"></script>
+    
+    <script>
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // سحب وإسقاط الصور
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('product-images');
+        const imagesPreview = document.getElementById('imagesPreview');
+        
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+        
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                handleFiles(fileInput.files);
+            }
+        });
+        
+        function handleFiles(files) {
+            imagesPreview.innerHTML = '';
+            
+            for (let i = 0; i < Math.min(files.length, 10); i++) {
+                const file = files[i];
+                if (!file.type.match('image.*')) continue;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.createElement('div');
+                    preview.className = 'image-preview-item';
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" alt="معاينة الصورة">
+                        <button class="remove-image"><i class="fas fa-times"></i></button>
+                    `;
+                    imagesPreview.appendChild(preview);
+                    
+                    // إزالة الصورة
+                    preview.querySelector('.remove-image').addEventListener('click', function() {
+                        preview.remove();
+                        
+                        // إنشاء جديد لـ DataTransfer لإزالة الملف
+                        const newFiles = new DataTransfer();
+                        for (let j = 0; j < fileInput.files.length; j++) {
+                            if (fileInput.files[j] !== file) {
+                                newFiles.items.add(fileInput.files[j]);
+                            }
+                        }
+                        fileInput.files = newFiles.files;
+                    });
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // معاينة الإعلان
+        const previewBtn = document.querySelector('.preview-btn');
+        const previewModal = document.getElementById('previewModal');
+        const previewContent = document.getElementById('previewContent');
+        
+        previewBtn.addEventListener('click', function() {
+            const form = document.getElementById('addProductForm');
+            const formData = new FormData(form);
+            
+            // بناء معاينة الإعلان
+            let previewHTML = `
+                <div class="preview-product-card">
+                    <div class="preview-product-images">
+                        <div class="main-image">
+                            ${imagesPreview.children.length > 0 ? 
+                                `<img src="${imagesPreview.children[0].querySelector('img').src}" alt="معاينة الصورة">` : 
+                                '<div class="no-image"><i class="fas fa-image"></i></div>'}
+                        </div>
+                    </div>
+                    
+                    <div class="preview-product-info">
+                        <h3>${formData.get('title') || 'عنوان الإعلان'}</h3>
+                        
+                        <div class="preview-price-condition">
+                            <span class="price">${formData.get('price') ? formData.get('price') + ' د.ك' : 'السعر'}</span>
+                            <span class="condition">${getConditionText(formData.get('condition'))}</span>
+                        </div>
+                        
+                        <div class="preview-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${getLocationText(formData.get('location'))}</span>
+                            <span><i class="far fa-clock"></i> الآن</span>
+                        </div>
+                        
+                        <div class="preview-description">
+                            <h4>وصف المنتج</h4>
+                            <p>${formData.get('description') || 'لا يوجد وصف'}</p>
+                        </div>
+                        
+                        <div class="preview-seller">
+                            <h4>معلومات البائع</h4>
+                            <div class="seller-info">
+                                <span><i class="fas fa-user"></i> ${formData.get('seller-name') || 'اسم البائع'}</span>
+                                <span><i class="fas fa-phone"></i> ${formData.get('phone') || 'رقم الهاتف'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            previewContent.innerHTML = previewHTML;
+            previewModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // إغلاق نافذة المعاينة
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            previewModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // دالة مساعدة للحصول على نص الحالة
+        function getConditionText(condition) {
+            const conditions = {
+                'new': 'جديد',
+                'used-excellent': 'مستعمل - ممتاز',
+                'used-good': 'مستعمل - جيد',
+                'used-fair': 'مستعمل - مقبول'
+            };
+            return conditions[condition] || 'الحالة';
+        }
+        
+        // دالة مساعدة للحصول على نص الموقع
+        function getLocationText(location) {
+            const locations = {
+                'kuwait': 'الكويت',
+                'hawally': 'حولي',
+                'fahaheel': 'الفحيحيل',
+                'salmiya': 'السالمية',
+                'farwaniya': 'الفروانية',
+                'jahra': 'الجهراء'
+            };
+            return locations[location] || 'الموقع';
+        }
+    </script>
+</body>
+</html>
